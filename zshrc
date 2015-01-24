@@ -76,5 +76,11 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="subl ~/.zshrc"
-# alias ohmyzsh="subl ~/.oh-my-zsh"
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
+alias ~='cd ~'
+alias c='clear'
+alias home='cd ~'
+alias g='git'
