@@ -2,4 +2,4 @@
 	name = Derek Brown
 	email = derek@derek.am
 [push]
-	default = simple
+	default = current
