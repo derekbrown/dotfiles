@@ -11,3 +11,8 @@ Dotfiles is a repository filled with my configurations for various tools I use d
 
 ##How do I develop within Dotfiles?
 1. You don't. Fork this repository.
+
+##Todos
+1. Add linking for Sublime settings.
+2. Build more robust install script.
+
