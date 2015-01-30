@@ -84,3 +84,5 @@ alias ~='cd ~'
 alias c='clear'
 alias home='cd ~'
 alias g='git'
+alias fetchdemodb="~/workspace/AMP/Tools/scripts/fetch_remote_db.sh --fetch-db --no-backup-db --use-demo-db --ldap-username derek.brown"
+alias fetchdb="~/workspace/AMP/Tools/scripts/fetch_remote_db.sh --fetch-db --no-backup-db --ldap-username derek.brown"
