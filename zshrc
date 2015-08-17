@@ -48,8 +48,8 @@ ZSH_THEME="arrow"
 plugins=(git apache2-macports bower brew git-extras jsontools npm osx python sbt scala sublime sudo)
 
 # User configuration
-export JAVA_HOME=`/usr/libexec/java_home -v 1.7`
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derek/Sites/exo_browser/depot_tools:/Users/derek/play:/Users/derek/voldemort"
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derek/Sites/exo_browser/depot_tools:/Users/derek/play:/Users/derek/voldemort:/Users/derek.brown/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -86,3 +86,6 @@ alias home='cd ~'
 alias g='git'
 alias fetchdemodb="~/workspace/AMP/Tools/scripts/fetch_remote_db.sh --fetch-db --no-backup-db --use-demo-db --ldap-username derek.brown"
 alias fetchdb="~/workspace/AMP/Tools/scripts/fetch_remote_db.sh --fetch-db --no-backup-db --ldap-username derek.brown"
+alias amprun="./gradlew :rest-api-server:run"
+alias adminrun="./gradlew platform:server:admin:run"
+alias repgen="./gradlew :platform:service:reportgeneration:run"
