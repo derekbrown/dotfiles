@@ -1,5 +1,7 @@
 [user]
 	name = Derek Brown
-	email = derek@derek.am
+	email = derek@brown.lt
 [push]
 	default = current
+[credential]
+	helper = osxkeychain

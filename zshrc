@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/derek.brown/dotfiles/oh-my-zsh
+export ZSH=/Users/derekbrown/dotfiles/oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -49,7 +49,7 @@ plugins=(git apache2-macports bower brew git-extras jsontools npm osx python sbt
 
 # User configuration
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derek/Sites/exo_browser/depot_tools:/Users/derek/play:/Users/derek/voldemort:/Users/derek.brown/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derekbrown/Sites/exo_browser/depot_tools:/Users/derekbrown/play:/Users/derekbrown/voldemort:/Users/derekbrown/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
