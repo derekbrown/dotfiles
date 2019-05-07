@@ -1,81 +1,70 @@
-# Path to your oh-my-zsh installation.
+##################
+# GENERAL CONFIG #
+##################
+
 export ZSH=/Users/derekbrown/dotfiles/oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 ZSH_THEME="arrow"
+plugins=(git apache2-macports bower brew git-extras jsontools npm osx python sublime sudo)
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+###########
+# HISTORY #
+###########
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt EXTENDED_HISTORY
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Dont record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Dont record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Dont write duplicate entries in the history file.
+setopt inc_append_history
+setopt share_history
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+###############
+# PATH CONFIG #
+###############
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git apache2-macports bower brew git-extras jsontools npm osx python sbt scala sublime sudo)
-
-# User configuration
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
-export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derekbrown/Sites/exo_browser/depot_tools:/Users/derekbrown/play:/Users/derekbrown/voldemort:/Users/derekbrown/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
+export ANDROID_NDK="/usr/local/opt/android-ndk"
+export ANDROID_NDK_HOME="/usr/local/opt/android-ndk"
+export ANDROID_HOME="/Users/derekbrown/Library/Android/sdk"
+export PATH="/usr/local/opt/android-ndk:/Users/derekbrown/Library/Android/sdk:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derek/Sites/exo_browser/depot_tools:/Users/derek/play:/Users/derek/voldemort:/Users/derek.brown/bin"
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+#################
+# EDITOR CONFIG #
+#################
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+##############
+# GIT CONFIG #
+##############
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
+gds() {
+  if [ $# -eq 0 ]
+      then
+          git diff | subl
+      else
+          git diff $@ | subl
+  fi
+}
+
+
+###########
+# ALIASES #
+###########
+
+# Getting Around
 alias ..='cd ..'
 alias ...='cd ../../../'
 alias .4='cd ../../../../'
@@ -83,9 +72,54 @@ alias .5='cd ../../../../../'
 alias ~='cd ~'
 alias c='clear'
 alias home='cd ~'
+alias w="cd ~/workspace"
+alias e="cd ~/workspace/exeq"
+alias m="cd ~/workspace/milk"
+alias b="cd ~/workspace/bunches"
+alias bf="cd ~/workspace/bunches-functions"
+alias f="cd ~/workspace/freshmilk"
+alias ch="cd ~/workspace/cheddar"
+alias gr="cd ~/workspace/grayson"
+alias cr="cd ~/workspace/curd"
+alias h="cd ~/workspace/havarti"
+alias sw="cd ~/workspace/swiss"
+alias s="cd ~/workspace/saga"
+
+# ZSH Config
+alias ez='vim ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+# Git
 alias g='git'
-alias fetchdemodb="~/workspace/AMP/Tools/scripts/fetch_remote_db.sh --fetch-db --no-backup-db --use-demo-db --ldap-username derek.brown"
-alias fetchdb="~/workspace/AMP/Tools/scripts/fetch_remote_db.sh --fetch-db --no-backup-db --ldap-username derek.brown"
-alias amprun="./gradlew :rest-api-server:run"
-alias adminrun="./gradlew platform:server:admin:run"
-alias repgen="./gradlew :platform:service:reportgeneration:run"
+alias glg="git log"
+
+# React Native
+alias rand="react-native run-android"
+alias rios="react-native run-ios"
+alias rstart="react-native start"
+alias clearwatch="watchman watch-del-all"
+alias clearios="rm -rf ios/build"
+alias clearnpm="rm -rf node_modules && npm install"
+alias clearpackager="rm -rf $TMPDIR/react-* && npm start -- --reset-cache"
+alias clearcache="npm start -- --reset-cache"
+alias clearall="watchman watch-del-all && rm -rf node_modules && npm install && rm -rf $TMPDIR/react-* && npm start -- --reset-cache"
+
+# Elixir
+alias mc="mix compile"
+alias mps="mix phx.server"
+alias mdg="mix deps.get"
+alias mdc="mix deps.compile"
+alias mec="mix ecto.create"
+alias mem="mix ecto.migrate"
+alias imr="iex -S mix run"
+alias ips="iex -S mix phx.server"
+
+# Exeq
+alias edb="ssh -L 5000:localhost:5432 derek@yellow-stage.exeq.io -p 51844"
+alias cpr="code-push release-react exeq ios --description"
+alias cpd="code-push deployment ls exeq -k"
+alias cpp="code-push promote exeq Staging Production -m"
+
+# Bunches
+alias bpr="code-push release-react Bunches ios --description"
+alias bpp="code-push promote Bunches Staging Production"
