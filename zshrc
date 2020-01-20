@@ -130,5 +130,5 @@ alias cab="cd ~/workspace/cab"
 alias es="expo start"
 alias ys="yarn start"
 alias bp="git push && expo publish"
-alias merlotdb="psql --host=merlot.c743w3uzrnkc.us-east-1.rds.amazonaws.com --port=5432 --username=merlot --password --dbname=merlot"
+
 alias cpr="code-push release-react Bunches ios"
