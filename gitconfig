@@ -5,3 +5,5 @@
 	default = current
 [credential]
 	helper = osxkeychain
+[diff]
+	noprefix = true
