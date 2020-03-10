@@ -74,8 +74,9 @@ alias c='clear'
 alias home='cd ~'
 alias w="cd ~/workspace"
 alias m="cd ~/workspace/merlot"
+alias r="cd ~/workspace/riesling"
 alias ma="cd ~/workspace/malbec"
-alias b="cd ~/workspace/cab"
+alias b="cd ~/workspace/cabNative"
 alias bf="cd ~/workspace/merlot"
 alias python="python3"
 alias pip="pip3"
@@ -109,7 +110,6 @@ alias clearnpm="rm -rf node_modules && npm install"
 alias clearpackager="rm -rf $TMPDIR/react-* && npm start -- --reset-cache"
 alias clearwatch="watchman watch-del-all"
 
-
 # Elixir
 alias mc="mix compile"
 alias mps="mix phx.server"
@@ -117,18 +117,19 @@ alias mdg="mix deps.get"
 alias mdc="mix deps.compile"
 alias mec="mix ecto.create"
 alias mem="mix ecto.migrate"
+alias dmem="MIX_ENV=dev mix ecto.migrate"
+alias pmem="MIX_ENV=prod mix ecto.migrate"
 alias imr="iex -S mix run"
 alias ips="iex -S mix phx.server"
+alias dips="MIX_ENV=dev iex -S mix phx.server"
+alias pips="MIX_ENV=prod iex -S mix phx.server"
 alias mdr="mix distillery.release"
 alias mdrc="mix distillery.release.clean"
 
-# Exeq
-alias edb="ssh -L 5000:localhost:5432 derek@yellow-stage.exeq.io -p 51844"
-
 # Bunches
-alias cab="cd ~/workspace/cab"
+alias cab="cd ~/workspace/cabNative"
 alias es="expo start"
 alias ys="yarn start"
 alias bp="git push && expo publish"
-
+alias merlotdb="psql --host=merlot.c743w3uzrnkc.us-east-1.rds.amazonaws.com --port=5432 --username=merlot --password --dbname=merlot"
 alias cpr="code-push release-react Bunches ios"
