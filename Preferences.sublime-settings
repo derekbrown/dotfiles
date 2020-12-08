@@ -19,18 +19,17 @@
     "build",
     "_build",
     "node_modules",
-    "deps",
     "Pods",
     "*.lock",
     "*.dump",
     "*-lock.json"
   ],
-  "font_face": "Fira Code",
+  "font_face": "Fira Code Regular",
   "font_options":
   [
     "subpixel_antialias"
   ],
-  "font_size": 18,
+  "font_size": 17,
   "highlight_line": true,
   "highlight_modified_tabs": true,
   "hot_exit": false,
@@ -41,7 +40,7 @@
   "line_padding_bottom": 4,
   "line_padding_top": 4,
   "open_files_in_new_window": false,
-  "save_on_focus_lost": false,
+  "save_on_focus_lost": true,
   "scroll_past_end": true,
   "sidebar_large": true,
   "tab_size": 2,
