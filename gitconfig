@@ -7,3 +7,5 @@
 	helper = osxkeychain
 [diff]
 	noprefix = true
+[mergetool]
+	keepBackup = false

@@ -32,7 +32,7 @@ export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 export ANDROID_NDK="/usr/local/opt/android-ndk"
 export ANDROID_NDK_HOME="/usr/local/opt/android-ndk"
 export ANDROID_HOME="/Users/derekbrown/Library/Android/sdk"
-export PATH="/usr/local/opt/android-ndk:/Users/derekbrown/Library/Android/sdk:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derek/Sites/exo_browser/depot_tools:/Users/derek/play:/Users/derek/voldemort:/Users/derek.brown/bin:/Users/derekbrown/.local/bin"
+export PATH="/usr/local/bin:/usr/local/opt/android-ndk:/Users/derekbrown/Library/Android/sdk:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/usr/bin/mongodb/bin:/Users/derek/Sites/exo_browser/depot_tools:/Users/derek/play:/Users/derek/voldemort:/Users/derek.brown/bin:/Users/derekbrown/.local/bin"
 source $ZSH/oh-my-zsh.sh
 
 
@@ -114,6 +114,8 @@ alias clearwatch="watchman watch-del-all"
 alias mc="mix compile"
 alias mps="mix phx.server"
 alias mdg="mix deps.get"
+alias mdu="mix deps.unlock"
+alias mdl="mix deps.clean"
 alias mdc="mix deps.compile"
 alias mec="mix ecto.create"
 alias mem="mix ecto.migrate"
@@ -122,9 +124,13 @@ alias pmem="MIX_ENV=prod mix ecto.migrate"
 alias imr="iex -S mix run"
 alias ips="iex -S mix phx.server"
 alias dips="MIX_ENV=dev iex -S mix phx.server"
+alias lips="MIX_ENV=local iex -S mix phx.server"
 alias pips="MIX_ENV=prod iex -S mix phx.server"
 alias mdr="mix distillery.release"
 alias mdrc="mix distillery.release.clean"
+alias mho="mix hex.outdated"
+alias mpd="mix phx.digest"
+alias mpc="mix phx.digest.clean"
 
 # Bunches
 alias cab="cd ~/workspace/cabNative"
@@ -133,3 +139,5 @@ alias ys="yarn start"
 alias bp="git push && expo publish"
 alias merlotdb="psql --host=merlot.c743w3uzrnkc.us-east-1.rds.amazonaws.com --port=5432 --username=merlot --password --dbname=merlot"
 alias cpr="code-push release-react Bunches ios"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
