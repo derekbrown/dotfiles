@@ -1,0 +1,283 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+
+##################
+# GENERAL CONFIG #
+##################
+
+export ZSH=/Users/derekbrown/dotfiles/oh-my-zsh
+ZSH_THEME="arrow"
+plugins=(git git-open apache2-macports bower brew git-extras jsontools npm macos sublime sudo iterm-tab-color)
+EDITOR=subl
+
+###########
+# HISTORY #
+###########
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt EXTENDED_HISTORY
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Dont record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Dont record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Dont write duplicate entries in the history file.
+setopt inc_append_history
+setopt share_history
+
+###############
+# PATH CONFIG #
+###############
+
+export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
+export WORKSPACE_BASE=$HOME/OpenHands
+export ANDROID_NDK="/usr/local/opt/android-ndk"
+export ANDROID_NDK_HOME="/usr/local/opt/android-ndk"
+export ANDROID_HOME="/Users/derekbrown/Library/Android/sdk"
+export PATH="/Library/PostgreSQL/17:/opt/homebrew/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm:/usr/bin:/bin:/usr/sbin:/sbin:/opt/local/bin:/opt/local/sbin:/Users/derekbrown/.local/bin:/opt/homebrew/bin:/opt/homebrew/Cellar/postgresql@13/:$HOME/.rvm/bin:$HOME/.cargo/bin:$HOME/.asdf:/usr/local/go/bin:$GOPATH/bin:/Users/derekbrown/.foundry/bin"
+source $ZSH/oh-my-zsh.sh
+
+
+#################
+# EDITOR CONFIG #
+#################
+
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
+
+###########
+# ALIASES #
+###########
+
+# Getting Around
+alias ..='cd ..'
+alias ...='cd ../../../'
+alias .4='cd ../../../../'
+alias .5='cd ../../../../../'
+alias ~='cd ~'
+alias c='clear'
+alias home='cd ~'
+alias w="cd ~/workspace"
+alias foc="cd ~/workspace/friendsonchain"
+alias db="cd ~/workspace/derekbrownxyz"
+alias di="cd ~/workspace/dime"
+alias ba="cd ~/workspace/barolo"
+alias j="cd ~/workspace/careers"
+alias m="cd ~/workspace/merlot"
+alias mn="cd ~/workspace/merlot_notifications"
+alias o="cd ~/workspace/omnibus"
+alias me="cd ~/workspace/mead"
+alias mu="cd ~/workspace/must"
+alias ci="cd ~/workspace/citizen"
+alias po="cd ~/workspace/port"
+alias r="cd ~/workspace/riesling"
+alias ma="cd ~/workspace/malbec"
+alias b="cd ~/workspace/cabNative"
+alias co="cd ~/workspace/concord"
+alias s="cd ~/workspace/sonoma"
+alias p="cd ~/workspace/pinotage"
+alias ww="cd ~/workspace/website"
+alias ws="cd ~/workspace/website-studio"
+
+# ZSH Config
+alias ez='subl ~/.zshrc'
+alias sz='source ~/.zshrc'
+
+# Git
+alias g='git'
+alias glg="git log"
+alias gpgf="git config --global commit.gpgsign false"
+alias gpgt="git config --global commit.gpgsign true"
+alias gce="git commit --allow-empty"
+alias mm="git checkout master"
+alias grc="git rebase --continue"
+alias gra="git rebase --abort"
+alias gsta="git stash"
+alias gsa="git stash apply"
+alias grb="git pull origin main"
+source /Users/derekbrown/workspace/git-extras/etc/git-extras-completion.zsh
+
+# Elixir
+alias mc="mix compile"
+alias mps="mix phx.server"
+alias mdg="mix deps.get"
+alias mdu="mix deps.unlock"
+alias mdl="mix deps.clean"
+alias mdc="mix deps.compile"
+alias mec="mix ecto.create"
+alias mem="mix ecto.migrate"
+alias cmem="MIX_ENV=cutting mix ecto.migrate"
+alias dmem="MIX_ENV=dev mix ecto.migrate"
+alias lmem="MIX_ENV=local mix ecto.migrate"
+alias pmem="MIX_ENV=prod mix ecto.migrate"
+alias imr="iex -S mix run"
+alias ips="iex -S mix phx.server"
+alias cips="MIX_ENV=cutting iex -S mix phx.server"
+alias dips="MIX_ENV=dev iex -S mix phx.server"
+# alias lips="MIX_ENV=local iex -S mix phx.server"
+alias lips="make local-server"
+alias lisp="make local-server"
+alias tips="MIX_ENV=test iex -S mix phx.server"
+alias pips="MIX_ENV=prod iex -S mix phx.server"
+alias mrel="MIX_ENV=prod mix release merlot"
+alias mf="mix format"
+alias mft="mix format && make test"
+alias mit="mix test --exclude slow --exclude excluded"
+alias mt="make test"
+alias mho="mix hex.outdated"
+alias mpd="mix phx.digest"
+alias mpc="mix phx.digest.clean"
+
+# Native
+alias b="cd ~/workspace/birthday"
+alias bp="cd ~/workspace/birthday/panes"
+alias n="cd ~/workspace/native"
+alias ds="cd ~/workspace/native/dotstudio"
+alias dz="cd ~/workspace/native/dotzero"
+alias nb="cd ~/workspace/native/birthday"
+alias nd="cd ~/workspace/native/dotzero"
+alias np="cd ~/workspace/native/passport"
+alias ndc="cd ~/workspace/native/dot-contract"
+alias npc="cd ~/workspace/native/passport-contract"
+alias npr="cd ~/workspace/native/prints"
+alias ns="cd ~/workspace/native/dotstudio"
+
+alias deployprod='kubectl apply -f k8s/aws/manifests/prod/02-merlot-deployment-and-services.yml -n prod'
+alias deploysecrets='kubectl apply -f k8s/aws/manifests/prod/00-secrets.yml -n prod'
+alias currentprod='kubectl describe deployment merlot-deployment -n prod'
+alias restartmerlot='kubectl rollout restart -n prod deployment/merlot-deployment'
+
+alias deploynotis='kubectl apply -f k8s/aws/manifests/prod/01-merlot-notifications-deployment-and-services.yml -n prod'
+alias currentnotis='kubectl describe deployment merlot-notifications-deployment -n prod'
+alias restartnotis='kubectl rollout restart -n prod deployment/merlot-notifications-deployment'
+
+alias deployomnibus='kubectl apply -f k8s/aws/manifests/prod/01-omnibus-deployment-and-services.yml -n prod'
+alias currentomnibus='kubectl describe deployment omnibus-deployment -n prod'
+alias restartomnibus='kubectl rollout restart -n prod deployment/omnibus-deployment'
+
+alias opid='cd /Users/derekbrown/Library/Application\ Support/Postgres/var-15-oban && rm -rf postmaster.pid'
+alias rpid='cd /Users/derekbrown/Library/Application\ Support/Postgres/var-15 && rm -rf postmaster.pid'
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export ERL_AFLAGS="-kernel shell_history enabled"
+export ERL_HOME="/opt/homebrew/Cellar/erlang/24.1.4"
+export ERLINCL="$ERL_HOME/lib/erlang/usr/include"
+export LD_LIBRARY_PATH="$ERLINCL"
+export C_INCLUDE_PATH="$ERLINCL"
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+add-zsh-hook -Uz chpwd(){ source <(tea -Eds) }  #tea
+export NODE_OPTIONS=--openssl-legacy-provider
+
+nvm alias default 20.6.0
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/derekbrown/workspace/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/derekbrown/workspace/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/derekbrown/workspace/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/derekbrown/workspace/google-cloud-sdk/completion.zsh.inc'; fi
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+eval "$(fzf --zsh)"
+
+# -- Use fd instead of fzf --
+
+export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --exclude .git . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+
+source ~/workspace/fzf-git.sh/fzf-git.sh
+
+export FZF_CTRL_T_OPTS="--preview 'bat -n --color=always --line-range :500 {}'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always {} | head -200'"
+
+# Advanced customization of fzf options via _fzf_comprun function
+# - The first argument to the function is the name of the command.
+# - You should make sure to pass the rest of the arguments to fzf.
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd)           fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+    export|unset) fzf --preview "eval 'echo $'{}"         "$@" ;;
+    ssh)          fzf --preview 'dig {}'                   "$@" ;;
+    *)            fzf --preview "bat -n --color=always --line-range :500 {}" "$@" ;;
+  esac
+}
+
+# ---- Bat (better cat) ----
+alias cat="bat"
+
+# ---- Eza (better ls) -----
+
+alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+export BAT_THEME="Predawn Monokai"
+
+# ---- Zoxide (better cd) -----
+
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+ngc() {
+  git add .
+  git commit -m $1
+}
+
+ngp() {
+  git add .
+  git commit -m $1
+  git push
+}
+
+alias nah="git reset --hard && git clean -df"
+alias cleanclaude="rm -rf /Users/derekbrown/.nvm/versions/node/v20.6.0/lib/node_modules/@anthropic-ai/claude-code"
+alias installclaude="npm i -g @anthropic-ai/claude-code"
+alias reinstallclaude="cleanclaude && installclaude"
+alias rc="cleanclaude && installclaude"
+alias dsp="claude --dangerously-skip-permissions"
+alias td="nvim ~/workspace/todo.md"
+alias weather="curl wttr.in/nashville"
+alias oh="docker run -it --rm --pull=always \
+    -e SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.32-nikolaik \
+    -e SANDBOX_USER_ID=$(id -u) \
+    -e WORKSPACE_MOUNT_PATH=$WORKSPACE_BASE \
+    -v $WORKSPACE_BASE:/opt/workspace_base \
+    -e LOG_ALL_EVENTS=true \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v ~/.openhands-state:/.openhands-state \
+    -p 3000:3000 \
+    --add-host host.docker.internal:host-gateway \
+    --name openhands-app \
+    docker.all-hands.dev/all-hands-ai/openhands:0.32"
